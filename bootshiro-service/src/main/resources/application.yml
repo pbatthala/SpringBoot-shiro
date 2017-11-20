@@ -2,6 +2,45 @@
 server:
   port: 80                                #定义服务端口
 #----------------------------------------------------
+#---------------redis配置----多个连接--------------------
+myredis:
+  redis-authentication:
+    host: 192.168.117.148             #连接地址
+    port: 6379                        #连接端口号
+    password: mldnjava                #连接密码
+    timeout: 1000                     #连接时间
+    database: 0                       #当前对应的数据
+    pool:
+      max-active: 10
+      max-idle: 8
+      min-idle: 2
+      max-wait: 100
+      
+  redis-authorization:  #名字随便写，没有自动配置作用，只能够读取
+    host: 192.168.117.148             #连接地址
+    port: 6379                        #连接端口号
+    password: mldnjava                #连接密码
+    timeout: 1000                     #连接时间
+    database: 1                       #当前对应的数据
+    pool:
+      max-active: 10
+      max-idle: 8
+      min-idle: 2
+      max-wait: 100
+  redis-activeSessionCache:  # 名字随便写的，没有自动配置的作用，只能够读取
+    host: 192.168.117.148 
+    port: 6379
+    password: mldnjava
+    timeout: 1000
+    database: 2
+    pool:
+      max-active: 10
+      max-idle: 8
+      min-idle: 2
+      max-wait: 100
+   
+#-----------------------------------------------------
+
 #----------------------- druid 的数据源-------------
 spring:
   datasource:
@@ -22,7 +61,7 @@ spring:
 #---------------配置mybatis文件------------------------
 mybatis:
   config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
-  type-aliases-package: cn.wt.bootMybatis.integration.vo    # 定义所有操作类的别名所在包
+  type-aliases-package: cn.wt.bootshiro.vo    # 定义所有操作类的别名所在包
   mapper-locations:                                         # 所有的mapper映射文件
   - classpath:mybatis/mapping/**/*.xml                       # 所有的接口实现的类
   
